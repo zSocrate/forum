@@ -6,15 +6,15 @@ require('actions/database.php');
 if(isset($_POST['validate'])){
 
     //Vérifier si l'user a complété tout les champs
-    if(!empty($_POST['pseudo']) && !empty($_POST['password'])){
+    if(!empty($_POST['nickname']) && !empty($_POST['password'])){
 
         //Les données de l'user
-        $user_pseudo = htmlspecialchars($_POST['pseudo']);
+        $user_nickname = htmlspecialchars($_POST['nickname']);
         $user_password = htmlspecialchars($_POST['password']);
 
         //Vérifier si l'utilisateur existe (si le pseudo est correct)
-        $checkIfUserExists = $bdd->prepare('SELECT * FROM users WHERE pseudo = ?');
-        $checkIfUserExists->execute([$user_pseudo]);
+        $checkIfUserExists = $pdo->prepare('SELECT * FROM users WHERE nickname = ?');
+        $checkIfUserExists->execute([$user_nickname]);
 
         if($checkIfUserExists->rowCount() > 0){
 
@@ -29,7 +29,7 @@ if(isset($_POST['validate'])){
                 $_SESSION['id'] = $usersInfos['id'];
                 $_SESSION['lastname'] = $usersInfos['lastname'];
                 $_SESSION['firstname'] = $usersInfos['firstname'];
-                $_SESSION['pseudo'] = $usersInfos['pseudo'];
+                $_SESSION['nickname'] = $usersInfos['nickname'];
 
                 //Redirige l'utilisateur vers la page d'acceuil
                 header('Location: index.php');

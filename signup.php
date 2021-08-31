@@ -1,4 +1,4 @@
-<?php require('actions/signupAction.php'); ?>
+<?php require('actions/users/signupAction.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'includes/head.php'; ?>
@@ -11,7 +11,7 @@
 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Pseudo</label>
-            <input type="text" class="form-control" name="pseudo">
+            <input type="text" class="form-control" name="nickname">
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nom</label>

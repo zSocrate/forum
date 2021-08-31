@@ -1,4 +1,4 @@
-<?php require('actions/loginAction.php'); ?>
+<?php require('actions/users/loginAction.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'includes/head.php'; ?>
@@ -11,7 +11,7 @@
 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Pseudo</label>
-            <input type="text" class="form-control" name="pseudo">
+            <input type="text" class="form-control" name="nickname">
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Mot de passe</label>

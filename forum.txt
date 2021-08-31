@@ -1,7 +1,11 @@
 Incritpion / Connexion
 Publier une question
+Afficher les questions publier par l'utilisateur
 Modifier une question
 Supprimer une question
 Rechercher et affiner les questions
 Répondre à une question
 Afficher le proful d'un utilisateur (avec ses publications)
+
+Catégorie
+Méssage privé

@@ -6,27 +6,27 @@ require('actions/database.php');
 if(isset($_POST['validate'])){
 
     //Vérifier si l'user a complété tout les champs
-    if(!empty($_POST['pseudo']) && !empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['password'])){
+    if(!empty($_POST['nickname']) && !empty($_POST['lastname']) && !empty($_POST['firstname']) && !empty($_POST['password'])){
 
         //Les données de l'user
-        $user_pseudo = htmlspecialchars($_POST['pseudo']);
+        $user_nickname = htmlspecialchars($_POST['nickname']);
         $user_lastname = htmlspecialchars($_POST['lastname']);
         $user_firstname = htmlspecialchars($_POST['firstname']);
         $user_password = password_hash($_POST['password'] , PASSWORD_DEFAULT);
 
         //Vérifier si l'utilisateur existe déjà sur le site
-        $checkIfUserAlreadyExists = $bdd->prepare('SELECT pseudo FROM users WHERE pseudo = ?');
-        $checkIfUserAlreadyExists->execute([$user_pseudo]);
+        $checkIfUserAlreadyExists = $pdo->prepare('SELECT nickname FROM users WHERE nickname = ?');
+        $checkIfUserAlreadyExists->execute([$user_nickname]);
 
         if($checkIfUserAlreadyExists->rowCount() == 0){
             
-            //Insérer l'utilisateur dans la bdd
-            $insertUserOnWebsite = $bdd->prepare('INSERT INTO users(pseudo, lastname, firstname, pass)VALUE(?, ?, ?, ?)');
-            $insertUserOnWebsite->execute([$user_pseudo, $user_lastname, $user_firstname, $user_password]);
+            //Insérer l'utilisateur dans la pdo
+            $insertUserOnWebsite = $pdo->prepare('INSERT INTO users(nickname, lastname, firstname, pass)VALUE(?, ?, ?, ?)');
+            $insertUserOnWebsite->execute([$user_nickname, $user_lastname, $user_firstname, $user_password]);
 
             //Récupérer les informations de l'utilisateur
-            $getInfosOfThisUserReq = $bdd->prepare('SELECT id FROM users WHERE nom = ? AND prenom = ? AND pseudo = ?');
-            $getInfosOfThisUserReq->execute([$user_lastname, $user_firstname, $user_pseudo]);
+            $getInfosOfThisUserReq = $pdo->prepare('SELECT id FROM users WHERE nom = ? AND prenom = ? AND nickname = ?');
+            $getInfosOfThisUserReq->execute([$user_lastname, $user_firstname, $user_nickname]);
 
             $usersInfos = $getInfosOfThisUserReq->fetch();
 
@@ -35,7 +35,7 @@ if(isset($_POST['validate'])){
             $_SESSION['id'] = $usersInfos['id'];
             $_SESSION['lastname'] = $usersInfos['lastname'];
             $_SESSION['firstname'] = $usersInfos['firstname'];
-            $_SESSION['pseudo'] = $usersInfos['pseudo'];
+            $_SESSION['nickname'] = $usersInfos['nickname'];
 
             //Rediriger l'utilisateur vers la page d'acceuil
             header('Location: index.php');
