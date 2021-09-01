@@ -25,7 +25,7 @@ if(isset($_POST['validate'])){
             $insertUserOnWebsite->execute([$user_nickname, $user_lastname, $user_firstname, $user_password]);
 
             //Récupérer les informations de l'utilisateur
-            $getInfosOfThisUserReq = $pdo->prepare('SELECT id FROM users WHERE nom = ? AND prenom = ? AND nickname = ?');
+            $getInfosOfThisUserReq = $pdo->prepare('SELECT id FROM users WHERE nom = ? AND firstname = ? AND nickname = ?');
             $getInfosOfThisUserReq->execute([$user_lastname, $user_firstname, $user_nickname]);
 
             $usersInfos = $getInfosOfThisUserReq->fetch();

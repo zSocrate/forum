@@ -9,9 +9,12 @@
         <li class="nav-item">
           <a class="nav-link" href="publish.php">Publier</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="profiles.php">Mon profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="actions/users/logoutAction.php">Se déconnecter</a>
+        </li>
       </ul>
     </div>
   </div>
