@@ -25,10 +25,13 @@ if(isset($_POST['validate'])){
             $insertUserOnWebsite->execute([$user_nickname, $user_lastname, $user_firstname, $user_password]);
 
             //Récupérer les informations de l'utilisateur
-            $getInfosOfThisUserReq = $pdo->prepare('SELECT id FROM users WHERE nom = ? AND firstname = ? AND nickname = ?');
+            $getInfosOfThisUserReq = $pdo->prepare('SELECT * FROM users WHERE lastname = ? AND firstname = ? AND nickname = ?');
             $getInfosOfThisUserReq->execute([$user_lastname, $user_firstname, $user_nickname]);
 
             $usersInfos = $getInfosOfThisUserReq->fetch();
+
+            // echo 'userInfos';
+            // var_dump($_SESSION);
 
             //Authentifier l'utilisateur sur le site et récupérer ses données dans des variables globales sessions
             $_SESSION['auth'] = true;

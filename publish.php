@@ -12,11 +12,14 @@ require('actions/request/publishAction.php');
     <form class="container" method="POST">
 
         <?php 
+
             if(isset($errorMsg)){ 
                 echo '<p>'.$errorMsg.'</p>'; 
             }else if(isset($successMsg)){ 
                 echo '<p>'.$successMsg.'</p>';
             }
+            
+            // var_dump($_SESSION)
         ?>
 
 
